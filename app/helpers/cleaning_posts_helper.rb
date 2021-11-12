@@ -1,0 +1,2 @@
+module CleaningPostsHelper
+end
