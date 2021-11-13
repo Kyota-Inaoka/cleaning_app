@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+
   end
 
   def create
@@ -10,6 +11,11 @@ class SessionsController < ApplicationController
     else
       render :new
     end   
+  end
+
+  def destroy
+    reset_session
+    redirect_to login_path, notice: 'ログアウトしました'
   end
 
   def session_params
