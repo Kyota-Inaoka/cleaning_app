@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
 
-  root to: 'cleaning_posts#new'
+  root to: 'cleaning_posts#index'
 
   resources :users
+  resources :cleaning_posts
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
