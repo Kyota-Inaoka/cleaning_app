@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  root to: 'cleaning_posts#new'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'logout', to: 'sessions#destroy'
 
-  get '/sign_up', to: 'users#sign_up'
+  get '/signup', to: 'users#new'
+  post '/signup', to: 'users#create'
+
+  root to: 'cleaning_posts#index'
+
+  resources :users
+  resources :cleaning_posts
+
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
