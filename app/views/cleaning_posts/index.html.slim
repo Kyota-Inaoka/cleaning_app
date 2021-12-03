@@ -1,3 +1,31 @@
-
 - if current_user
+  h1 Hello, #{current_user.name}
   =link_to 'ログアウト', logout_path, class: 'btn btn-primary'
+
+=link_to '登録', new_cleaning_post_path, class: 'btn btn-primary'
+
+
+table.table.table-hober
+  thead.thead-default
+    tr
+      th= CleaningPost.human_attribute_name(:place_id)
+      th= CleaningPost.human_attribute_name(:description)
+      th= CleaningPost.human_attribute_name(:required_time_id)
+      th= CleaningPost.human_attribute_name(:like_times)
+      th= CleaningPost.human_attribute_name(:created_at)
+      th= CleaningPost.human_attribute_name(:user_id)
+
+    t_body
+      - @cleaning_posts .each do |cleaning_post|
+        tr
+          td= cleaning_post.place_id
+          td= cleaning_post.description
+          td= cleaning_post.required_time_id
+          td= cleaning_post.like_times
+          td= cleaning_post.created_at.to_s(:datetime_jp)
+          td= cleaning_post.user.name
+          - if current_user.id == cleaning_post.user_id
+            td
+              = link_to '編集', edit_cleaning_post_path(cleaning_post), class: 'btn btn-primary mr-e'
+              = link_to '削除', cleaning_post, method: :delete, class: 'btn btn-danger'
+

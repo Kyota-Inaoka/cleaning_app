@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_12_012948) do
+ActiveRecord::Schema.define(version: 2021_12_03_022519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cleaning_posts", force: :cascade do |t|
+    t.integer "place_id", null: false
+    t.string "description", null: false
+    t.integer "required_time_id", null: false
+    t.integer "like_times", default: 0, null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
